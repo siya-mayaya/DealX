@@ -1,10 +1,12 @@
 package com.dealx.PageObjects;
 
+import com.dealx.utils.UserActions;
 import org.openqa.selenium.*;
 
 public class Home
 {
     private final WebDriver driver;
+    private UserActions actions;
 
 //    @FindBy(how = How.ID, using = "search_query_top")
 //    private WebElement searchInputField;
@@ -44,9 +46,8 @@ public class Home
 
     public Home scrollAndHover()
     {
-        WebElement item = driver.findElement(By.xpath(""));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView();", item);
+        WebElement item = driver.findElement(By.xpath("//*[@id=\"homefeatured\"]/li[1]/div/div[1]/div/a[1]/img"));
+        actions.scrollToElement(item, driver);
         return this;
     }
 }

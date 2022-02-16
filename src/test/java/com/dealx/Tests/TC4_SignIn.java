@@ -8,7 +8,7 @@ public class TC4_SignIn extends BaseTest
     public void SignIn()
     {
         homePageObjects.clickSignInBtn();
-        signIn
+        signInPageObjects
                 .enterEmailAddress()
                 .enterPassword()
                 .clickSignIn();

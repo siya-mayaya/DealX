@@ -13,11 +13,15 @@ public class TC1_Search extends BaseTest
         try
         {
             search = readFromExcelFile.readExcelFile();
+            String result;
             String[] searchTerms = search.split(",");
             for (int i = 0; i < searchTerms.length; i++) {
                 homePageObjects
                         .enterSearchCriteria(searchTerms[i])
                         .clickSearchBtn();
+                result = homePageObjects.searchedTerm().replaceAll("^\"|\"$", "");
+                validation
+                        .verifyTestResult(result.toLowerCase(), searchTerms[i].toLowerCase());
             }
         }
         catch(Exception ex)

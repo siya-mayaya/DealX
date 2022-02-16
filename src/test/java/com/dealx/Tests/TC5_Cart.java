@@ -5,9 +5,24 @@ import org.testng.annotations.Test;
 public class TC5_Cart extends BaseTest
 {
     @Test
-    public void cart()
+    public void addItemToCart()
     {
-        homePageObjects.scrollAndHover();
-        //browserFactory.teardown();
+        String randomValue = actions.generateRandomValue()+"";
+        homePageObjects
+                .scrollToFirstItem()
+                .addFirstItemToCart()
+                .closePopUpWindow()
+                .clickCartIcon();
+        cartPageObjects
+                .setQty(randomValue);
+        cartPageObjects
+                .Price();
+        cartPageObjects
+                .totalProductAmount();
+        String totalAmt = actions.calculateTotalCost(randomValue, cartPageObjects.Price());
+        validation
+                .verifyTestResult(totalAmt, cartPageObjects.totalProductAmount());
+
+        browserFactory.teardown();
     }
 }
